@@ -1,0 +1,39 @@
+{
+  "name": "gantt-pro",
+  "private": true,
+  "version": "1.0.0",
+  "description": "跨框架甘特图组件 Monorepo（Vue 3 + React）",
+  "scripts": {
+    "dev:vue": "pnpm --filter @gantt-pro/vue-demo dev",
+    "dev:react": "pnpm --filter @gantt-pro/react-demo dev",
+    "build:core": "pnpm --filter @gantt-pro/core build",
+    "build:vue": "pnpm --filter @gantt-pro/vue build",
+    "build:react": "pnpm --filter @gantt-pro/react build",
+    "build": "pnpm build:core && pnpm build:vue && pnpm build:react",
+    "test:core": "pnpm --filter @gantt-pro/core test",
+    "test:vue": "pnpm --filter @gantt-pro/vue test",
+    "test:react": "pnpm --filter @gantt-pro/react test",
+    "test": "pnpm test:core && pnpm test:vue && pnpm test:react",
+    "docs:dev": "pnpm --filter docs dev",
+    "docs:build": "pnpm --filter docs build",
+    "docs:preview": "pnpm --filter docs preview",
+    "lint": "pnpm -r --parallel run lint:check",
+    "lint:fix": "pnpm -r --parallel run lint",
+    "format": "pnpm -r --parallel run format",
+    "format:check": "pnpm -r --parallel run format:check",
+    "publish:core": "pnpm build:core && pnpm --filter @gantt-pro/core publish --no-git-checks",
+    "publish:vue": "pnpm build:vue && pnpm --filter @gantt-pro/vue publish --no-git-checks",
+    "publish:react": "pnpm build:react && pnpm --filter @gantt-pro/react publish --no-git-checks",
+    "publish:all": "pnpm build && pnpm -r publish --no-git-checks",
+    "version:patch": "pnpm -r exec npm version patch --no-git-tag-version",
+    "version:minor": "pnpm -r exec npm version minor --no-git-tag-version",
+    "version:major": "pnpm -r exec npm version major --no-git-tag-version"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "tsup": "^8.5.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
+  }
+}

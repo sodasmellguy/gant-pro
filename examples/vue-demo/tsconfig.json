@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "noEmit": true,
+    "baseUrl": "../..",
+    "paths": {
+      "@gantt-pro/core": ["packages/core/src/index.ts"],
+      "@gantt-pro/vue": ["packages/vue/src/index.ts"],
+      "@gantt-pro/vue/style.css": ["packages/vue/src/gantt.css"]
+    }
+  },
+  "include": ["src"]
+}

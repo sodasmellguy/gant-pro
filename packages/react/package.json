@@ -1,0 +1,80 @@
+{
+  "name": "@gantt-pro/react",
+  "version": "1.1.4",
+  "description": "跨框架甘特图 React 适配层",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/gantt.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "gantt",
+    "gantt-chart",
+    "甘特图",
+    "timeline",
+    "scheduler",
+    "project-management",
+    "critical-path",
+    "dependency"
+  ],
+  "license": "MIT",
+  "author": "gantt-pro",
+  "homepage": "https://www.sodasmell.top",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sodasmellguy/gant-pro"
+  },
+  "bugs": {
+    "url": "https://github.com/sodasmellguy/gant-pro/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "lint": "eslint src --fix",
+    "lint:check": "eslint src",
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,css,json}\""
+  },
+  "peerDependencies": {
+    "@gantt-pro/core": "^1.1.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@gantt-pro/core": "workspace:*",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/react": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.69.0",
+    "@typescript-eslint/parser": "^8.69.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.6",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "tsup": "^8.0.0",
+    "typescript": "~5.7.2",
+    "vitest": "^4.1.11"
+  }
+}

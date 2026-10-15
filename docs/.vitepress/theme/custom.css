@@ -1,0 +1,21 @@
+/* demo 页面全宽展示：突破 VitePress doc 布局的 max-width 限制 */
+.demo-fullwidth .VPDoc > .container > .content {
+  max-width: 100% !important;
+}
+
+.demo-fullwidth .VPDoc > .container {
+  max-width: 100% !important;
+}
+
+.demo-fullwidth .VPDoc .content-container {
+  max-width: 100% !important;
+}
+
+/* demo 页面去掉顶部和底部多余的 padding，让甘特图更贴近视口边缘 */
+.demo-fullwidth .VPDoc {
+  padding: 0 !important;
+}
+
+.demo-fullwidth .VPDoc .content-container {
+  padding: 0 !important;
+}

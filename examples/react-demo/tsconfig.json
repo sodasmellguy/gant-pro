@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "baseUrl": "../..",
+    "paths": {
+      "@gantt-pro/core": ["packages/core/src/index.ts"],
+      "@gantt-pro/react": ["packages/react/src/index.ts"],
+      "@gantt-pro/react/style.css": ["packages/react/src/gantt.css"]
+    }
+  },
+  "include": ["src"]
+}

@@ -1,0 +1,1227 @@
+/* ================= 主题变量 ================= */
+.gt-root {
+  --gt-primary: #4f7cff;
+  --gt-bg: #ffffff;
+  --gt-header-bg: #f7f8fa;
+  --gt-border: #e6e8eb;
+  --gt-border-strong: #d5d8de;
+  --gt-text: #24292f;
+  --gt-text-2: #8b929e;
+  --gt-row-hover: #f3f6fb;
+  --gt-row-selected: #eef3ff;
+  --gt-weekend: #f6f7f9;
+  --gt-today: #ff7043;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #7ea1ff;
+  --gt-summary: #a3b3cc;
+  --gt-summary-fill: #64748b;
+  --gt-milestone: #f59e0b;
+  --gt-link: #a8b3c4;
+  --gt-baseline: #b9c0cb;
+  --gt-danger: #e5484d;
+  --gt-tooltip-bg: #1f2329;
+  --gt-tooltip-text: #f0f2f5;
+  --gt-header-text: inherit;
+  --gt-progress-fill: rgba(255, 255, 255, 0.28);
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background: var(--gt-bg);
+  color: var(--gt-text);
+  font-size: 13px;
+  line-height: 1.4;
+  font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.gt-dark {
+  --gt-bg: #1b1e26;
+  --gt-header-bg: #22252f;
+  --gt-border: #31353f;
+  --gt-border-strong: #3c414d;
+  --gt-text: #e3e6eb;
+  --gt-text-2: #9aa1ad;
+  --gt-row-hover: #242834;
+  --gt-row-selected: #26304a;
+  --gt-weekend: #20232d;
+  --gt-summary: #55617a;
+  --gt-link: #5b6478;
+  --gt-baseline: #565e6e;
+  --gt-tooltip-bg: #2b2f3a;
+  --gt-tooltip-text: #e8ebf0;
+  --gt-milestone: #f59e0b;
+  --gt-bar: #4f7cff;
+  --gt-bar-2: #7ea1ff;
+  --gt-danger: #e5484d;
+}
+
+/* ================= 主题预设 ================= */
+
+/* 蓝色主题（默认） */
+.gt-theme-blue {
+  --gt-primary: #4f7cff;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #7ea1ff;
+  --gt-row-selected: #eef3ff;
+}
+
+/* 绿色主题 */
+.gt-theme-green {
+  --gt-primary: #22c55e;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #4ade80;
+  --gt-row-selected: #f0fdf4;
+  --gt-milestone: #f59e0b;
+}
+
+/* 紫色主题 */
+.gt-theme-purple {
+  --gt-primary: #8b5cf6;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #a78bfa;
+  --gt-row-selected: #faf5ff;
+  --gt-milestone: #f59e0b;
+}
+
+/* 橙色主题 */
+.gt-theme-orange {
+  --gt-primary: #f97316;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #fb923c;
+  --gt-row-selected: #fff7ed;
+  --gt-milestone: #e5484d;
+}
+
+/* 深色主题 + 蓝色强调 */
+.gt-dark.gt-theme-blue {
+  --gt-primary: #60a5fa;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #93c5fd;
+  --gt-row-selected: #1e3a5f;
+}
+
+/* 深色主题 + 绿色强调 */
+.gt-dark.gt-theme-green {
+  --gt-primary: #4ade80;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #86efac;
+  --gt-row-selected: #1a3a2a;
+}
+
+/* 深色主题 + 紫色强调 */
+.gt-dark.gt-theme-purple {
+  --gt-primary: #a78bfa;
+  --gt-bar: var(--gt-primary);
+  --gt-bar-2: #c4b5fd;
+  --gt-row-selected: #2e1a4f;
+}
+
+.gt-root *,
+.gt-root *::before,
+.gt-root *::after {
+  box-sizing: border-box;
+}
+.gt-root.gt-dragging,
+.gt-root.gt-dragging * {
+  cursor: grabbing !important;
+  transition: none !important;
+  user-select: none !important;
+}
+
+/* ================= 表头 ================= */
+.gt-header {
+  flex: none;
+  display: flex;
+  background: var(--gt-header-bg);
+  border-bottom: 1px solid var(--gt-border-strong);
+  position: relative;
+  z-index: 5;
+}
+
+.gt-table-header {
+  flex: none;
+  display: flex;
+  border-right: 1px solid var(--gt-border-strong);
+}
+.gt-th {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-weight: 600;
+  color: var(--gt-header-text, var(--gt-text));
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid var(--gt-border);
+}
+.gt-th:last-child {
+  border-right: none;
+}
+
+.gt-time-header {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.gt-time-header-inner {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+}
+.gt-tick-top,
+.gt-tick-bottom {
+  position: absolute;
+  top: 0;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--gt-text);
+  font-weight: 600;
+}
+.gt-tick-top {
+  border-right: 1px solid var(--gt-border-strong);
+}
+.gt-tick-bottom {
+  top: 50%;
+  font-weight: 400;
+  color: var(--gt-text-2);
+  font-size: 12px;
+  border-right: 1px solid var(--gt-border);
+}
+.gt-tick-bottom.weekend {
+  background: var(--gt-weekend);
+  color: var(--gt-text-2);
+}
+
+/* ================= 主体 ================= */
+.gt-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+.gt-body-inner {
+  position: relative;
+}
+.gt-body-flex {
+  display: flex;
+  align-items: stretch;
+}
+
+/* ---------- 左侧表格 ---------- */
+.gt-table {
+  flex: none;
+  position: relative;
+  border-right: 1px solid var(--gt-border-strong);
+  z-index: 2;
+}
+.gt-tr {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--gt-border);
+  cursor: pointer;
+  background: var(--gt-bg);
+}
+.gt-tr:hover {
+  background: var(--gt-row-hover);
+}
+.gt-tr.selected {
+  background: var(--gt-row-selected);
+}
+.gt-tr.summary .gt-td:first-child {
+  font-weight: 600;
+}
+.gt-td {
+  flex: none;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 1px solid var(--gt-border);
+  color: var(--gt-text);
+}
+.gt-td:last-child {
+  border-right: none;
+}
+
+.gt-chevron {
+  flex: none;
+  width: 0;
+  height: 0;
+  margin-right: 6px;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid var(--gt-text-2);
+  transform: rotate(90deg);
+  transition: transform 0.15s;
+  cursor: pointer;
+}
+.gt-chevron.open {
+  transform: rotate(0deg);
+}
+.gt-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 行内编辑输入框 */
+.gt-edit-input {
+  flex: 1;
+  min-width: 0;
+  height: 24px;
+  border: 1px solid var(--gt-primary);
+  border-radius: 4px;
+  padding: 0 6px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  background: var(--gt-bg);
+  color: var(--gt-text);
+}
+.gt-edit-input.num {
+  flex: none;
+  width: 48px;
+  text-align: center;
+}
+.gt-name-milestone {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  background: var(--gt-milestone);
+  transform: rotate(45deg);
+  border-radius: 1px;
+}
+
+/* ---------- 时间线 ---------- */
+.gt-time-clip {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.gt-time-content {
+  position: relative;
+  height: 100%;
+  /* 行线：每 rowHeight 一条 */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--gt-border) 0,
+    var(--gt-border) 1px,
+    transparent 1px,
+    transparent var(--row-h, 36px)
+  );
+}
+.gt-weekend {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--gt-weekend);
+}
+.gt-vline {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--gt-border);
+}
+.gt-today {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--gt-today);
+  z-index: 3;
+  opacity: 0.85;
+}
+.gt-today::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -4px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid var(--gt-today);
+}
+
+/* ================= 任务条 ================= */
+.gt-bar-wrap {
+  position: absolute;
+  left: 0;
+  z-index: 4;
+}
+
+/* 基准线（计划 vs 实际） */
+.gt-baseline {
+  position: absolute;
+  bottom: 1px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--gt-baseline);
+  pointer-events: none;
+}
+.gt-baseline.overdue {
+  background: var(--gt-danger);
+}
+.gt-baseline-dia {
+  position: absolute;
+  bottom: 2px;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  transform: rotate(45deg);
+  border: 1.5px solid var(--gt-baseline);
+  pointer-events: none;
+}
+.gt-baseline-dia.overdue {
+  border-color: var(--gt-danger);
+}
+.gt-bar {
+  position: absolute;
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--gt-bar-2), var(--gt-bar));
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.25);
+  cursor: grab;
+  overflow: visible;
+  transition: box-shadow 0.15s;
+}
+.gt-bar:hover,
+.gt-bar.selected {
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.35);
+}
+.gt-bar.selected {
+  outline: 2px solid var(--gt-text);
+  outline-offset: 1px;
+}
+/* 关键路径 */
+.gt-bar.critical {
+  border: 1.5px solid var(--gt-danger);
+}
+.gt-milestone.critical {
+  outline: 2px solid var(--gt-danger);
+  outline-offset: 1px;
+}
+.gt-link-line.critical {
+  stroke-width: 2;
+}
+.gt-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 6px 0 0 6px;
+  background: var(--gt-progress-fill);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  min-width: 0;
+}
+.gt-bar-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+.gt-bar-label.outside {
+  color: var(--gt-text);
+  text-shadow: none;
+  left: 100%;
+  padding-left: 6px;
+  padding-right: 0;
+  width: max-content;
+  inset: auto auto 50% 100%;
+  transform: translateY(50%);
+}
+.gt-progress-divider {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.75);
+  pointer-events: none;
+}
+.gt-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 7px;
+  cursor: ew-resize;
+  opacity: 0;
+  transition: opacity 0.12s;
+}
+.gt-handle.left {
+  left: 0;
+  border-radius: 6px 0 0 6px;
+}
+.gt-handle.right {
+  right: 0;
+  border-radius: 0 6px 6px 0;
+}
+.gt-bar:hover .gt-handle {
+  opacity: 1;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
+}
+.gt-bar:hover .gt-handle.right {
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
+}
+.gt-progress-thumb {
+  position: absolute;
+  top: -7px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--gt-bar);
+  cursor: ew-resize;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 2;
+}
+.gt-bar:hover .gt-progress-thumb {
+  opacity: 1;
+}
+
+/* 里程碑菱形 */
+.gt-milestone {
+  position: absolute;
+  transform: rotate(45deg);
+  background: var(--gt-milestone);
+  border-radius: 3px;
+  cursor: grab;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.3);
+}
+.gt-milestone.selected {
+  outline: 2px solid var(--gt-text);
+  outline-offset: 2px;
+}
+
+/* 汇总条 */
+.gt-summary {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+.gt-summary-cap {
+  flex: none;
+  width: 9px;
+  height: 11px;
+  background: var(--gt-summary);
+  border-radius: 2px;
+}
+.gt-summary-cap.left {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  margin-right: 1px;
+}
+.gt-summary-cap.right {
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  margin-left: 1px;
+}
+.gt-summary-track {
+  flex: 1;
+  height: 5px;
+  background: var(--gt-summary);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.gt-summary-fill {
+  height: 100%;
+  background: var(--gt-summary-fill);
+  border-radius: 3px;
+}
+.gt-summary.selected .gt-summary-track,
+.gt-summary.selected .gt-summary-cap {
+  outline: 1px solid var(--gt-text);
+}
+
+/* 负责人小标签 */
+.gt-owner-tag {
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 6px;
+  height: 16px;
+  line-height: 16px;
+  border-radius: 8px;
+  font-size: 10px;
+  color: #fff;
+  background: #94a3b8;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* 连线锚点 */
+.gt-anchor {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--gt-primary);
+  transform: translateY(-50%);
+  cursor: crosshair;
+  z-index: 6;
+  box-shadow: 0 0 0 3px rgba(79, 124, 255, 0.2);
+}
+
+/* ================= 连线 ================= */
+.gt-link-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+.gt-link-line {
+  fill: none;
+  stroke: var(--gt-link);
+  stroke-width: 1.5;
+}
+.gt-link-line.draft {
+  stroke: var(--gt-primary);
+  stroke-dasharray: 5 4;
+}
+.gt-link-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 10;
+  pointer-events: stroke;
+  cursor: pointer;
+}
+.gt-arrow-head {
+  fill: var(--gt-link);
+}
+
+/* ================= 底部横向滚动条 ================= */
+.gt-hscroll {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  height: 13px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: var(--gt-header-bg);
+  border-top: 1px solid var(--gt-border);
+  z-index: 6;
+}
+
+/* ================= 提示框 ================= */
+.gt-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: var(--gt-tooltip-bg);
+  color: var(--gt-tooltip-text);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  max-width: 280px;
+}
+.gt-tooltip-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.gt-tooltip-row {
+  opacity: 0.85;
+}
+
+/* ================= 滚动条美化 ================= */
+.gt-body::-webkit-scrollbar,
+.gt-hscroll::-webkit-scrollbar {
+  width: 10px;
+  height: 11px;
+}
+.gt-body::-webkit-scrollbar-thumb,
+.gt-hscroll::-webkit-scrollbar-thumb {
+  background: rgba(128, 134, 148, 0.35);
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.gt-body::-webkit-scrollbar-thumb:hover,
+.gt-hscroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 134, 148, 0.6);
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* ================= 第2-5批新增样式 ================= */
+
+/* Checkbox 列 */
+.gt-checkbox-th,
+.gt-checkbox-td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  width: 36px;
+  flex: none;
+}
+.gt-checkbox-th {
+  height: 100%;
+}
+.gt-checkbox-th input,
+.gt-checkbox-td input {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* 列宽拖拽手柄 */
+.gt-col-resizer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  cursor: ew-resize;
+  background: transparent;
+  transition: background 0.15s;
+}
+.gt-col-resizer:hover {
+  background: var(--gt-primary);
+}
+.gt-th {
+  position: relative;
+}
+
+/* 行拖拽排序样式 */
+.gt-tr.gt-drag-over {
+  border-top: 2px solid var(--gt-primary);
+}
+.gt-tr.gt-dragging-row {
+  opacity: 0.4;
+}
+.gt-row-drag-handle {
+  flex: none;
+  width: 14px;
+  height: 16px;
+  margin-right: 4px;
+  cursor: grab;
+  background-image: radial-gradient(circle, var(--gt-text-2) 1.2px, transparent 1.2px);
+  background-size: 4px 4px;
+  background-position: 0 0;
+  opacity: 0.5;
+}
+.gt-row-drag-handle:hover {
+  opacity: 1;
+}
+
+/* 分隔线（表格与时间线交界） */
+.gt-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  background: var(--gt-border-strong);
+  z-index: 1;
+}
+
+/* 自定义假日背景 */
+.gt-holiday {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--gt-holiday-color, rgba(229, 72, 77, 0.08));
+  font-size: 10px;
+  color: var(--gt-danger);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* 层级背景色变量 */
+.gt-root {
+  --gt-level-0: transparent;
+  --gt-level-1: rgba(79, 124, 255, 0.03);
+  --gt-level-2: rgba(79, 124, 255, 0.06);
+  --gt-level-3: rgba(79, 124, 255, 0.09);
+}
+
+/* 多级嵌套表头 */
+.gt-nested-header {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+.gt-header-row {
+  display: flex;
+  flex: 1;
+  border-bottom: 1px solid var(--gt-border);
+}
+.gt-header-row:last-child {
+  border-bottom: none;
+}
+.gt-header-row .gt-th {
+  border-right: 1px solid var(--gt-border);
+}
+
+/* 列合并单元格 */
+.gt-td[style*='z-index'] {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================= 右键菜单 ================= */
+.gt-ctx-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+}
+.gt-ctx-menu {
+  position: fixed;
+  z-index: 9999;
+  min-width: 140px;
+  background: var(--gt-bg);
+  border: 1px solid var(--gt-border-strong);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  padding: 4px 0;
+  font-size: 13px;
+}
+.gt-ctx-item {
+  padding: 6px 16px;
+  cursor: pointer;
+  color: var(--gt-text);
+  transition: background 0.1s;
+}
+.gt-ctx-item:hover {
+  background: var(--gt-row-hover);
+}
+.gt-ctx-item.disabled {
+  color: var(--gt-text-2);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ================= 视口外任务定位指示器 ================= */
+.gt-off-screen-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: var(--gt-primary);
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.gt-off-screen-indicator.left {
+  left: 4px;
+}
+.gt-off-screen-indicator.right {
+  right: 4px;
+}
+.gt-off-screen-indicator:hover {
+  opacity: 0.85;
+}
+
+/* ================= 无限滚动填充提示 ================= */
+.gt-infinite-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--gt-text-2);
+  pointer-events: none;
+}
+.gt-infinite-edge.left {
+  left: 0;
+  background: linear-gradient(to right, var(--gt-bg), transparent);
+}
+.gt-infinite-edge.right {
+  right: 0;
+  background: linear-gradient(to left, var(--gt-bg), transparent);
+}
+
+/* ================= 条形动效系统 ================= */
+@keyframes gt-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+@keyframes gt-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+@keyframes gt-flow {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -20;
+  }
+}
+.gt-bar-effect-shimmer .gt-bar-fill {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: gt-shimmer 2s linear infinite;
+}
+.gt-bar-effect-pulse {
+  animation: gt-pulse 1.5s ease-in-out infinite;
+}
+.gt-link-line.effect-flow {
+  stroke-dasharray: 5 5;
+  animation: gt-flow 1s linear infinite;
+}
+
+/* ================= 多图联动高亮 ================= */
+.gt-sync-highlight {
+  outline: 2px solid var(--gt-primary) !important;
+  outline-offset: 1px;
+}
+
+/* ================= 工作日历非工作日 ================= */
+.gt-non-workday {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(229, 72, 77, 0.06);
+  pointer-events: none;
+}
+
+/* ================= 资源面板 ================= */
+.gt-resource-panel {
+  border-top: 1px solid var(--gt-border-strong);
+  background: var(--gt-bg);
+  overflow-y: auto;
+  flex: none;
+}
+.gt-resource-row {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--gt-border);
+  font-size: 12px;
+}
+.gt-resource-bar {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--gt-weekend);
+  overflow: hidden;
+  margin: 0 8px;
+}
+.gt-resource-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--gt-primary);
+}
+.gt-resource-conflict {
+  background: var(--gt-danger) !important;
+  opacity: 0.15;
+}
+
+/* ================= 打印优化 ================= */
+@media print {
+  .gt-root {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .gt-body {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .gt-hscroll {
+    display: none !important;
+  }
+  .gt-tooltip,
+  .gt-ctx-menu,
+  .gt-ctx-overlay {
+    display: none !important;
+  }
+}
+
+/* ================= 任务状态样式 ================= */
+.gt-bar.gt-status-planned {
+  opacity: 0.7;
+  border: 1.5px dashed var(--gt-text-2);
+  background: repeating-linear-gradient(
+    135deg,
+    var(--gt-bar-2),
+    var(--gt-bar-2) 4px,
+    rgba(255, 255, 255, 0.15) 4px,
+    rgba(255, 255, 255, 0.15) 8px
+  );
+}
+.gt-bar.gt-status-active {
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.2),
+    0 0 0 2px rgba(34, 197, 94, 0.3);
+}
+.gt-bar.gt-status-blocked {
+  background: repeating-linear-gradient(45deg, #e5484d, #e5484d 4px, #fca5a5 4px, #fca5a5 8px);
+  box-shadow: 0 1px 3px rgba(229, 72, 77, 0.3);
+}
+.gt-bar.gt-status-done {
+  opacity: 0.55;
+  background: linear-gradient(180deg, #86efac, #22c55e);
+}
+
+/* ================= 预期进度标记线 ================= */
+.gt-expected-line {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  background: var(--gt-danger);
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 3;
+  box-shadow: 0 0 4px rgba(229, 72, 77, 0.4);
+}
+.gt-expected-line::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gt-danger);
+}
+
+/* ================= 空数据提示 ================= */
+.gt-empty-data {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gt-text-2);
+  font-size: 14px;
+  padding: 40px 0;
+}
+
+/* ================= highlightDate 高亮 ================= */
+.gt-highlight-date {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: rgba(79, 124, 255, 0.08);
+  pointer-events: none;
+  z-index: 1;
+  border-left: 1px solid rgba(79, 124, 255, 0.2);
+  border-right: 1px solid rgba(79, 124, 255, 0.2);
+}
+
+/* ================= 任务分段 ================= */
+.gt-segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  pointer-events: none;
+}
+.gt-segment-fill {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+}
+
+/* ================= 搜索高亮 ================= */
+.gt-search-match {
+  background: rgba(255, 213, 79, 0.25) !important;
+  box-shadow: inset 3px 0 0 #ffd54f;
+}
+.gt-search-match.selected {
+  background: rgba(255, 213, 79, 0.4) !important;
+}
+
+/* ================= 连线类型可视化 ================= */
+.gt-link-line.dashed {
+  stroke-dasharray: 5 3;
+}
+
+/* ================= 打印优化 ================= */
+@media print {
+  .gt-toolbar,
+  .gt-hscroll,
+  .gt-off-screen-indicator,
+  .gt-tooltip,
+  .gt-ctx-menu,
+  .gt-ctx-overlay {
+    display: none !important;
+  }
+  .gt-root {
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .gt-body {
+    overflow: visible !important;
+    height: auto !important;
+  }
+  .gt-body-inner {
+    height: auto !important;
+  }
+  .gt-time-clip {
+    overflow: visible !important;
+  }
+  .gt-time-header {
+    overflow: visible !important;
+  }
+  @page {
+    size: A3 landscape;
+    margin: 10mm;
+  }
+}
+
+/* ================= 框选多选 ================= */
+.gt-box-select-rect {
+  position: absolute;
+  z-index: 50;
+  border: 1px dashed var(--gt-primary, #4b9cd3);
+  background: rgba(75, 156, 211, 0.12);
+  pointer-events: none;
+  border-radius: 2px;
+}
+.gt-box-select-highlight {
+  position: absolute;
+  z-index: 49;
+  border: 2px solid var(--gt-primary, #4b9cd3);
+  background: rgba(75, 156, 211, 0.1);
+  pointer-events: none;
+  border-radius: 3px;
+}
+
+/* ================= 任务详情侧边栏 ================= */
+.gt-detail-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.3);
+}
+.gt-detail-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  width: 360px;
+  height: 100vh;
+  background: var(--gt-bg, #fff);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  animation: gt-detail-slide-in 0.2s ease-out;
+}
+@keyframes gt-detail-slide-in {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.gt-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--gt-border, #eee);
+}
+.gt-detail-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gt-text, #333);
+}
+.gt-detail-close {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--gt-text-2, #999);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.gt-detail-close:hover {
+  background: var(--gt-row-hover, #f0f7ff);
+}
+.gt-detail-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px;
+}
+.gt-detail-field {
+  margin-bottom: 16px;
+}
+.gt-detail-field label {
+  display: block;
+  font-size: 12px;
+  color: var(--gt-text-2, #999);
+  margin-bottom: 4px;
+}
+.gt-detail-field input[type="text"],
+.gt-detail-field input:not([type]) {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--gt-border, #ddd);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--gt-text, #333);
+  background: var(--gt-bg, #fff);
+}
+.gt-detail-field input[type="number"] {
+  width: 80px;
+  padding: 8px 10px;
+  border: 1px solid var(--gt-border, #ddd);
+  border-radius: 4px;
+  font-size: 14px;
+}
+.gt-detail-suffix {
+  margin-left: 6px;
+  color: var(--gt-text-2, #999);
+}
+.gt-detail-readonly {
+  font-size: 14px;
+  color: var(--gt-text, #333);
+}
