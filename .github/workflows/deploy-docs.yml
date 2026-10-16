@@ -30,22 +30,22 @@ jobs:
         with:
           fetch-depth: 0 # lastUpdated 需要完整 git 历史
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 11.25.0
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: pnpm
+          cache: npm
+          cache-dependency-path: docs/package-lock.json
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          cd docs
+          npm install
 
       - name: Build docs
-        run: pnpm docs:build
+        run: |
+          cd docs
+          npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
