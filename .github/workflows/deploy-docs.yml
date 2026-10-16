@@ -7,7 +7,6 @@ on:
     branches: [master]
     paths:
       - 'docs/**'
-      - 'packages/**'
       - '.github/workflows/deploy-docs.yml'
   workflow_dispatch: # 支持手动触发
 
@@ -42,9 +41,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Build core packages (文档依赖)
-        run: pnpm build:core && pnpm build:vue
 
       - name: Build docs
         run: pnpm docs:build
