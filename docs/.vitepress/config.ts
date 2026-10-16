@@ -1,11 +1,18 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  // GitHub Pages 部署在子路径 https://<user>.github.io/gant-pro/
+  // 如使用自定义域名（根路径），删除此行或改为 '/'
+  base: '/gant-pro/',
   title: 'gantt-pro',
   description: '跨框架甘特图组件库 — Vue 3 + React',
   lang: 'zh-CN',
   lastUpdated: true,
   cleanUrls: true,
+  // 站点地图，帮助搜索引擎索引
+  sitemap: {
+    hostname: 'https://sodasmellguy.github.io/gant-pro/',
+  },
 
   head: [
     ['meta', { name: 'theme-color', content: '#3b82f6' }],
@@ -97,8 +104,14 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/' },
+      { icon: 'github', link: 'https://github.com/sodasmellguy/gant-pro' },
     ],
+
+    // 编辑链接 — 指向 GitHub 仓库源文件
+    editLink: {
+      pattern: 'https://github.com/sodasmellguy/gant-pro/edit/master/docs/:path',
+      text: '在 GitHub 上编辑此页',
+    },
 
     outline: {
       level: [2, 3],
